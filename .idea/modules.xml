@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/RuimuSuenaga-portfolio.iml" filepath="$PROJECT_DIR$/.idea/RuimuSuenaga-portfolio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RuimuSuenaga-portfolio.RuimuSuenaga-portfolio.main.iml" filepath="$PROJECT_DIR$/.idea/modules/RuimuSuenaga-portfolio.RuimuSuenaga-portfolio.main.iml" />
+    </modules>
+  </component>
+</project>
