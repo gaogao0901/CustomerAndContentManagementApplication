@@ -2,7 +2,6 @@ package com.example.its.web.user;
 
 import com.example.its.domain.auth.User;
 import com.example.its.domain.auth.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users")
@@ -21,6 +21,15 @@ public class UserController {
     // 手動で追加したコンストラクタ
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping
+    public String showList(Model model) {
+        List<User> userList = userService.findAll().stream()
+                .filter(user -> user.getDeletedAt() == null)
+                .collect(Collectors.toList());
+        model.addAttribute("userList", userList);
+        return "users/list";
     }
 
     // CREATE
@@ -39,13 +48,6 @@ public class UserController {
         userService.create(userForm.getUsername(), userForm.getPassword(), userForm.getAuthority());
 
         return "redirect:/users";
-    }
-
-    // READ
-    @GetMapping
-    public String showList(Model model) {
-        model.addAttribute("userList", userService.findAll());
-        return "users/List";
     }
 
     // UPDATE
@@ -92,7 +94,7 @@ public class UserController {
     @PostMapping("/{username}/delete")
     public String delete(@PathVariable String username) {
         userService.delete(username);
-        return "redirect:/users";
+        return "redirect:/users"; // ユーザーが削除された後にユーザー一覧ページにリダイレクトする
     }
 
     // SEARCH

@@ -16,4 +16,7 @@ public interface UserRepository {
     void update(User user);
 
     void delete(String username);
+
+    // 論理削除を行うメソッドの追加
+    void logicalDelete(long userId);
 }

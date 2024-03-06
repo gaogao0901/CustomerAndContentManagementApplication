@@ -14,11 +14,9 @@ public interface UserMapper {
     @Select("SELECT * FROM users")
     List<User> findAll();
 
-    // UserMapper.java
     @Insert("INSERT INTO users (username, password, authority) VALUES (#{username}, #{password}, #{authority})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(User user);
-
 
     @Update("UPDATE users SET password = #{password}, authority = #{authority} WHERE username = #{username}")
     void update(User user);
@@ -28,4 +26,8 @@ public interface UserMapper {
 
     @Select("SELECT * FROM users WHERE username LIKE #{keyword} OR authority LIKE #{keyword}")
     List<User> searchUsers(@Param("keyword") String keyword);
+
+    // 論理削除を実行するメソッド
+    @Update("UPDATE users SET deleted_at = NOW() WHERE id = #{userId}")
+    void logicalDelete(long userId);
 }

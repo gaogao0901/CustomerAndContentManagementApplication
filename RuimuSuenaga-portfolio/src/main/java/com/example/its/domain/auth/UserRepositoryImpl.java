@@ -46,4 +46,10 @@ public class UserRepositoryImpl implements UserRepository {
     public void delete(String username) {
         userMapper.delete(username);
     }
+
+    // logicalDeleteメソッドの実装
+    @Override
+    public void logicalDelete(long userId) {
+        userMapper.logicalDelete(userId);
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.its.web.user;
 
-import com.example.its.domain.auth.User;
 import com.example.its.web.validation.UniqueUsername;
 import lombok.Data;
 import lombok.NoArgsConstructor;
